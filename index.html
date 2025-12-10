@@ -3,121 +3,150 @@
 <head>
     <title>Momen Khalil | AI Developer</title>
     <style>
+        html { scroll-behavior: smooth; }
+
         /* BASE STYLES */
         body { 
             background-color: #0a192f; 
             color: #8892b0; 
             font-family: 'Segoe UI', sans-serif; 
-            display: flex; 
-            justify-content: center; 
-            overflow-x: hidden; /* Prevents scrollbar issues */
-        }
-        
-        .container { 
-            width: 80%; 
-            max-width: 900px; 
-            margin-top: 100px; 
-            animation: fadeIn 2s ease-in; /* Page fades in slowly */
+            margin: 0;
+            overflow-x: hidden; 
         }
 
-        /* ANIMATIONS */
-        @keyframes fadeIn {
-            0% { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
+        /* FLOATING BACKGROUND ANIMATION */
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Puts it BEHIND the text */
+            overflow: hidden;
         }
 
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
+        .cube {
+            position: absolute;
+            display: block;
+            list-style: none;
+            width: 20px;
+            height: 20px;
+            background: rgba(100, 255, 218, 0.1); /* Green tint */
+            animation: animate 25s linear infinite;
+            bottom: -150px;
         }
 
-        /* TYPING EFFECT CURSOR */
-        .cursor {
-            display: inline-block;
-            width: 10px;
-            background-color: #64ffda;
-            animation: blink 1s infinite;
+        @keyframes animate {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; border-radius: 0; }
+            100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; border-radius: 50%; }
         }
-        @keyframes blink { 0% { opacity: 0; } 50% { opacity: 1; } 100% { opacity: 0; } }
+
+        /* HEADER */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: rgba(10, 25, 47, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 10px 30px -10px rgba(2,12,27,0.7);
+            box-sizing: border-box;
+        }
+
+        .logo { color: #64ffda; font-size: 24px; font-weight: bold; border: 2px solid #64ffda; padding: 5px 10px; border-radius: 5px; text-decoration: none; transition: 0.3s; }
+        .logo:hover { background-color: rgba(100, 255, 218, 0.1); }
+
+        nav ul { list-style: none; display: flex; margin: 0; padding: 0; }
+        nav li { margin-left: 30px; }
+        nav a { color: #ccd6f6; text-decoration: none; font-size: 14px; transition: 0.3s; }
+        nav a:hover { color: #64ffda; }
+
+        /* CONTAINER */
+        .container { width: 80%; max-width: 900px; margin: 150px auto 0 auto; animation: fadeIn 2s ease-in; }
+
+        @keyframes fadeIn { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
 
         /* TEXT STYLES */
-        h1 { 
-            font-size: 60px; 
-            margin: 10px 0; 
-            background: linear-gradient(to right, #ccd6f6, #64ffda); 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; /* Makes name look like a gradient */
-        }
+        .cursor { display: inline-block; width: 10px; background-color: #64ffda; animation: blink 1s infinite; }
+        @keyframes blink { 0% { opacity: 0; } 50% { opacity: 1; } 100% { opacity: 0; } }
 
+        h1 { font-size: 70px; margin: 10px 0; background: linear-gradient(to right, #ccd6f6, #64ffda); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         h2 { color: #64ffda; font-size: 30px; margin-top: 0; }
-        
         .bio-text { font-size: 18px; line-height: 1.6; max-width: 600px; margin-bottom: 50px; }
-        
-        /* PROJECT CARD STYLES */
-        .project-card { 
-            border: 1px solid #233554; 
-            background-color: #112240; 
-            padding: 30px; 
-            border-radius: 10px; 
-            margin-bottom: 20px; 
-            box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
-            transition: all 0.25s cubic-bezier(0.645,0.045,0.355,1);
-        }
 
-        .project-card:hover {
-            transform: translateY(-10px); /* Moves up when hovered */
-            border-color: #64ffda;
-            box-shadow: 0 20px 30px -15px rgba(2,12,27,0.7);
-        }
+        /* TECH LIST */
+        .tech-list { display: grid; grid-template-columns: 1fr 1fr; max-width: 500px; list-style: none; padding: 0; margin-top: 20px; }
+        .tech-list li { position: relative; padding-left: 20px; margin-bottom: 10px; font-family: monospace; font-size: 14px; }
+        .tech-list li::before { content: "▹"; color: #64ffda; position: absolute; left: 0; }
 
-        /* BUTTON STYLES */
-        .btn { 
-            display: inline-block; 
-            padding: 12px 24px; 
-            border: 1px solid #64ffda; 
-            color: #64ffda; 
-            text-decoration: none; 
-            border-radius: 4px; 
-            margin-top: 20px;
-            transition: 0.3s;
-        }
-
-        .btn:hover {
-            background-color: rgba(100, 255, 218, 0.1); /* Glow effect */
-        }
+        /* PROJECT CARD */
+        .project-card { border: 1px solid #233554; background-color: #112240; padding: 30px; border-radius: 10px; margin-bottom: 20px; transition: transform 0.25s; position: relative; z-index: 10; }
+        .project-card:hover { transform: translateY(-7px); border-color: #64ffda; }
+        .btn { display: inline-block; padding: 12px 24px; border: 1px solid #64ffda; color: #64ffda; text-decoration: none; border-radius: 4px; margin-top: 20px; transition: 0.3s; }
+        .btn:hover { background-color: rgba(100, 255, 218, 0.1); }
     </style>
 </head>
 <body>
 
+    <div class="background-animation">
+        <ul style="padding:0; margin:0;">
+            </ul>
+    </div>
+
+    <header>
+        <a href="#" class="logo">MK</a>
+		<nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Work</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <div class="container">
         <p style="color: #64ffda; margin-bottom: 0;">Hi, my name is</p>
-        
         <h1>Momen Khalil</h1>
-        
         <h2 id="typing-text">I build <span class="cursor">|</span></h2>
         
-        <h3 style="color: #ccd6f6; margin-top: 60px;">01. About Me</h3>
-        <div class="bio-text">
-            <p>
-                Hello! I am a student at the University of Mosul, specializing in <strong>Artificial Intelligence</strong>. I don't just write code; I design the logic that makes software smart.
-            </p>
-            <p>
-                My focus is on backend efficiency and data algorithms. I use Python and C++ to solve complex computational problems.
-            </p>
+        <div id="about" style="padding-top: 100px; margin-top: -100px;">
+            <h3 style="color: #ccd6f6; margin-top: 80px;">01. About Me</h3>
+            <div class="bio-text">
+                <p>
+                    Hello! I am a student at the University of Mosul, currently pursuing a degree in the Artificial Intelligence department at the College of Computer Science and Mathematics. My journey involves solving complex problems through code and logic.
+                </p>
+                <p>
+                    I am passionate about the intersection of data management and algorithm design. Unlike typical developers, I focus on the computational logic that powers applications, utilizing languages like C++ and Python to build efficient systems.
+                </p>
+                <p>Here are the technologies I have been working with recently:</p>
+                <ul class="tech-list">
+                    <li>Python (AI & Data)</li>
+                    <li>C++ & C#</li>
+                    <li>SQL & Database</li>
+                    <li>JavaScript (ES6+)</li>
+                </ul>
+            </div>
         </div>
 
-        <h3 style="color: #ccd6f6; margin-top: 80px;">02. Featured Projects</h3>
-        
-        <div class="project-card">
-            <h3 style="color: #ccd6f6;">Solar System Visualization</h3>
-            <p>
-                A web-based interactive model of our solar system. Visualized planetary orbits and data using pure front-end technology.
-            </p>
-            <a href="https://github.com/FoX22-IQ/solar-system2" class="btn" target="_blank">View Source Code</a>
+        <div id="projects" style="padding-top: 100px; margin-top: -100px;">
+            <h3 style="color: #ccd6f6; margin-top: 80px;">02. Featured Projects</h3>
+            <div class="project-card">
+                <h3 style="color: #ccd6f6;">Solar System Visualization</h3>
+                <p>
+                    A web-based interactive model of our solar system. Visualized planetary orbits and data using pure front-end technology.
+                </p>
+                <a href="https://fox22-iq.github.io/solar-system2/" class="btn" target="_blank">View Project</a>
+            </div>
         </div>
-<h2 style="color: #ccd6f6;">Get In Touch</h2>
-            <p>I am currently open to new opportunities.</p>
+
+        <div id="contact" style="text-align: center; margin: 150px 0;">
+            <h2 style="color: #ccd6f6;">Get In Touch</h2>
+            <p style="max-width: 500px; margin: 0 auto; margin-bottom: 50px;">
+                I am currently open to new opportunities. Whether you have a question or just want to say hi, my inbox is always open!
+            </p>
             <a href="mailto:YOUR_EMAIL@GMAIL.COM" class="btn">Say Hello</a>
         </div>
         
@@ -125,23 +154,39 @@
     </div>
 
     <script>
+        // Typing Effect
         const textToType = "I build intelligent software solutions.";
         const typeWriterElement = document.getElementById('typing-text');
         let i = 0;
-
         function typeWriter() {
             if (i < textToType.length) {
-                // Remove the cursor, add the letter, add the cursor back
                 typeWriterElement.innerHTML = textToType.substring(0, i + 1) + '<span class="cursor">|</span>';
                 i++;
-                setTimeout(typeWriter, 100); // Speed of typing (100ms)
+                setTimeout(typeWriter, 100); 
             }
         }
+        window.onload = function() {
+            typeWriter();
+            createCubes();
+        };
 
-        // Start typing when page loads
-        window.onload = typeWriter;
+        // Create Background Cubes
+        function createCubes() {
+            const container = document.querySelector('.background-animation');
+            for (let i = 0; i < 15; i++) {
+                const cube = document.createElement('li');
+                cube.classList.add('cube');
+                
+                // Randomize position, size, and speed
+                cube.style.left = Math.floor(Math.random() * 90) + '%';
+                cube.style.width = Math.floor(Math.random() * 40 + 20) + 'px';
+                cube.style.height = cube.style.width;
+                cube.style.animationDuration = Math.floor(Math.random() * 10 + 10) + 's';
+                cube.style.animationDelay = Math.floor(Math.random() * 5) + 's';
+				container.appendChild(cube);
+            }
+        }
     </script>
 
 </body>
 </html>
-
