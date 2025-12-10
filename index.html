@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Portfolio</title>
+    <style>
+        body { background-color: #0a192f; color: #8892b0; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; }
+        .container { width: 80%; max-width: 900px; margin-top: 100px; }
+        h1 { color: #ccd6f6; font-size: 50px; margin: 10px 0; }
+        h2 { color: #64ffda; font-size: 30px; margin-top: 0; }
+        .bio-text { font-size: 18px; line-height: 1.6; max-width: 600px; margin-bottom: 50px; }
+        .tech-list { display: grid; grid-template-columns: 1fr 1fr; max-width: 400px; list-style: none; padding: 0; }
+        .tech-list li::before { content: "▹"; color: #64ffda; margin-right: 10px; }
+        .project-card { border: 1px solid #233554; background-color: #112240; padding: 30px; border-radius: 5px; margin-bottom: 20px; }
+        .btn { display: inline-block; padding: 12px 24px; border: 1px solid #64ffda; color: #64ffda; text-decoration: none; border-radius: 4px; margin-top: 20px;}
+        .center-section { text-align: center; margin: 100px 0; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <p style="color: #64ffda; margin-bottom: 0;">Hi, my name is</p>
+        <h1>[momen khalil]</h1>
+        <h2>I build intelligent software solutions.</h2>
+        
+        <h3 style="color: #ccd6f6; margin-top: 60px;">01. About Me</h3>
+        <div class="bio-text">
+            <p>
+                Hello! I am a student at the University of Mosul, currently pursuing a degree in the Artificial Intelligence department at the College of Computer Science and Mathematics. My journey involves solving complex problems through code and logic.
+            </p>
+            <p>
+                I am passionate about the intersection of data management and algorithm design. Unlike typical developers, I focus on the computational logic that powers applications, utilizing languages like C++ and Python to build efficient systems.
+            </p>
+            <p>Here are the technologies I have been working with recently:</p>
+            <ul class="tech-list">
+                <li>Python (AI & Data)</li>
+                <li>C++ & C#</li>
+                <li>SQL & Database Design</li>
+                <li>JavaScript (ES6+)</li>
+            </ul>
+        </div>
+
+        <h3 style="color: #ccd6f6; margin-top: 80px;">02. Some Things I've Built</h3>
+        <div class="project-card">
+            <h3 style="color: #ccd6f6;">Solar System Visualization</h3>
+            <p>
+                A web-based interactive model of our solar system. I developed this to demonstrate my ability to visualize complex data structures on the front end without relying on heavy frameworks.
+            </p>
+            <a href="https://fox22-iq.github.io/solar-system2/" class="btn" target="_blank">View Project</a>
+        </div>
+
+        <div class="center-section">
+            <h3 style="color: #64ffda;">03. What's Next?</h3>
+            <h2 style="color: #ccd6f6; font-size: 40px;">Get In Touch</h2>
+            <p style="max-width: 500px; margin: 0 auto; line-height: 1.5;">
+                I am currently looking for new opportunities. Whether you have a question or just want to say hi, my inbox is always open!
+            </p>
+            <a href="mailto:momen.24cs0116@student.uomosul.edu.iq" class="btn" style="margin-top: 50px;">Say Hello</a>
+        </div>
+        
+        <p style="text-align: center; margin-bottom: 50px;">&copy; 2025</p>
+    </div>
+
+</body>
+</html>
